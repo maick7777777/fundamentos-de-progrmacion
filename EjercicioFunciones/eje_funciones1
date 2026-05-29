@@ -1,0 +1,8 @@
+def registro_usuario(nombre,edad,run,correo)
+    nombre=input("Ingrese su nombre-->")
+    try:
+        edad=int(input("Ingrese su edad-->"))
+    except ValueError:
+        print("Error: La edad debe ser un número entero.")
+    run=input("Ingrese su run-->")
+    correo=input("Ingrese su correo")
