@@ -40,6 +40,16 @@ def buscar_productos(productos):
         else:
             print("el producto no existe")  
             break  
+#funcion para buscar el producto mas caro
+def producto_mas_caro(productos):
+    precio_max=0
+    producto_max= " "
+    for clave, valor in productos.items():
+        if valor[1]>precio_max:
+            precio_max=valor[1]
+            producto_max=clave
+
+    print(f"el productos {producto_max} es el mayor con {precio_max}")
 
 while True:
     print("MENU REGISTRO")
@@ -48,7 +58,11 @@ while True:
     print("3 Buscar productos")
     print("4 Producto mas caro")
     print("5 salir ")
-    op =int(input("Ingrese la opcion-->"))
+
+    try:
+        op =int(input("Ingrese la opcion-->"))
+    except ValueError:
+        print("Solo se aceptan valores numericos ")
 
     if op==1:
         agregar_productos(productos)
@@ -57,7 +71,7 @@ while True:
     elif op==3:
         buscar_productos(productos)
     elif op==4:
-        print
+        producto_mas_caro(productos)
     elif op==5:
         break
     else:
