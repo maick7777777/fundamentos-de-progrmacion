@@ -21,15 +21,16 @@ def agregar_productos(productos):
     print("Productos agregados correctamente ")
 
 #funcion para mostrar los productos
-"""""
+
 def mostrar_producto(productos):
     for clave , valor in productos.items():
         print(f"nombre prodructo {clave}|stock y valor {valor}")
+
 """""
 def mostrar_producto(productos):
     for i in productos.items():
         print(i)
-
+"""""
 #funcion para buscar los productos
 def buscar_productos(productos):
     buscador=input("ingrese el producto a buscar-->").capitalize()

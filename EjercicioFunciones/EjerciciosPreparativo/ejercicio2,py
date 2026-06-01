@@ -1,0 +1,69 @@
+alumnos = {
+
+}
+
+#agregar alumnos
+def agregar_alumnos(alumnos):
+    nombre=input("Nombre del alumno: ").strip()#quita los espacios en blanco 
+    if nombre== "":
+        print("el nombre no puede estar vacio")
+        return
+
+    if nombre in alumnos:
+        print("el nombre ya esta en productos ")
+        return
+    
+    try:
+        cant_notas=int(input("Ingrese la cantidad de notas-->"))
+    except ValueError:
+        print("Solo se aceptan valores numericos ") 
+        return
+
+    for i in range(cant_notas):
+        notas=int(input("Ingrese notas-->"))
+        alumnos[nombre] = [notas]
+        print("Alumnos y notas correctamente ")
+
+#mostar alumnos 
+def mostar_alumnos(alumnos):
+    for clave, valor in alumnos.items():
+        print(f"alumno {clave}")
+    
+   
+
+   
+  
+
+
+while True:
+    print("MENU")
+    print("1. Agregar alumno")
+    print("2. Mostrar alumno")
+    print("3. ver promedios")
+    print("4.Mejor alumno")
+    print("5.Cantidad de aprobados")
+    print("6. Salir")
+    while True:
+        try:
+            op= int(input("Ingrese su opcion-->"))
+            break
+        except ValueError:
+            print("Solo se acptan valores numericos ")    
+
+    if op==1:
+        agregar_alumnos(alumnos)
+
+    elif op==2:
+        mostar_alumnos(alumnos)
+        
+    elif op==3:
+        pass
+    elif op==4:
+        pass
+    elif op==5:
+        pass
+    elif op==6:
+        pass
+    else:
+        print("Opcion ingresada fuera del rango ")        
+
