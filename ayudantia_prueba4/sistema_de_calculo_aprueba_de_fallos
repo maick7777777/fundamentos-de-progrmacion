@@ -1,0 +1,26 @@
+#importacion de funciones
+import funciones as fn
+
+#flag
+flag_menu=True
+
+#listas
+lista_calculos=[]
+
+while flag_menu:
+    
+
+    operador=input("ingrese el operador (+,-,*,/): ")
+
+    if(operador=="+") : 
+        try:
+            num1=float(input("Ingrese el primer numero: "))
+            num2=float(input("Ingrese el segundo numero: "))
+        except ValueError:
+            print("Solo se aceptan valore numericos")
+
+        fn.suma(num1 , num2)
+        
+    elif (operador=="-") :
+        pass
+        

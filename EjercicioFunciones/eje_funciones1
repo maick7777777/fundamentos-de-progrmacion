@@ -1,4 +1,4 @@
-def registro_usuario(nombre,edad,run,correo)
+def registro_usuario(nombre,edad,run,correo):
     nombre=input("Ingrese su nombre-->")
     try:
         edad=int(input("Ingrese su edad-->"))
