@@ -64,8 +64,7 @@ def producto_mas_caro(producto):
     print(f"EL producto {clave} mas caro es {producto_max}")   
 
     
-def salir_menu(productos):
-    flag_menu=False
+
 
 while flag_menu:
     menu()
@@ -83,5 +82,5 @@ while flag_menu:
     if op ==4:
         producto_mas_caro(productos)
     if op ==5:
-        salir_menu(productos)  
+        break
 
