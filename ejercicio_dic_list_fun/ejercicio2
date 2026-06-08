@@ -14,28 +14,69 @@ def menu():
     print("6 Salir ")
 
 def agregar_alumnos(alumnos):
-   
     while True:
         nombre=input("Nombre del alumno-->")
+        for clave , valor in alumnos.items():
+            if clave==nombre:
+                print("ya esta registrado")
+                return
         if nombre=="":
             print( "Nombre esta vacio, intentelo denuevo")
         else:
             break    
-    list_notas=[]        
-    try:
-        cant_notas=int(input("cantidad de notas-->"))
-    except ValueError:
-        print("Solo se aceptan valores numericos") 
-    for i in range(cant_notas):
-        notas=float(input(f"Nota {i+1}-->"))
-        list_notas.append(notas)
-        
+    list_notas=[]      
+    while True:  
+        try:
+            cant_notas=int(input("cantidad de notas-->"))
+            if cant_notas<=0:
+                print("La cantidad debe ser un numero mayor a 0")
+            else:
+                break    
+        except ValueError:
+            print("Solo se aceptan valores numericos") 
+    while True:
+        contador_notas=0
+        for i in range(cant_notas):
+            notas=float(input(f"Nota {i+1}-->"))
+            if notas<=1.0 and notas>=7.0:
+                print("La nota debe estar entre 1.0 y 7.0")
+            else:
+                list_notas.append(notas)   
+                contador_notas+=1
 
-        alumnos[nombre]=[list_notas]
+        if contador_notas==cant_notas:
+            alumnos[nombre]=list_notas
+            break      
+    
 
 def mostar_alumnos(alumnos):
     for clave, valor in alumnos.items():
         print(f"Nombre: {clave} Notas: {valor}")
+
+def ver_promedios(alumnos):
+    for clave, valor in alumnos.items():
+        promedio=sum (valor)/len(valor)
+        print(f"Nombre:{clave} promedio{round(promedio,1)}")
+    
+def mejor_alumno(alumnos):
+    for clave, valor in alumnos.items():
+        promedio=sum (valor)/len(valor)
+
+    mejor_alumno=0
+    if mejor_alumno<promedio:
+        mejor_alumno=promedio
+
+    print(f"Nombre {clave} promedio {round(mejor_alumno,1)}\nEs el mejor alumno")    
+
+    
+def cantidad_de_aprobados(alumnos):
+    cont_aprobados=0
+    for clave, valor in alumnos.items():
+        promedio=sum (valor)/len(valor)
+        if promedio>=4.0:
+            cont_aprobados+=1     
+    print(f"La cantidad de aprobados es {cont_aprobados}")
+
 
 while flag_menu:
     menu()
@@ -48,3 +89,13 @@ while flag_menu:
         agregar_alumnos(alumnos)
     elif(op==2):
         mostar_alumnos(alumnos)
+    elif(op==3):
+        ver_promedios(alumnos)
+    elif(op==4):
+        mejor_alumno(alumnos)    
+    elif(op==5):
+        cantidad_de_aprobados(alumnos)
+    elif(op==6):
+        break
+    else:
+        print("la opcion debe estar entre 1 y 6")
