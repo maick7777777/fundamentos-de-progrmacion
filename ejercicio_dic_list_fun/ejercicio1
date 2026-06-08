@@ -1,0 +1,87 @@
+#banderas
+flag_menu=True
+
+#diccionarios
+productos={
+
+}
+
+
+#funciones 
+def menu():
+    print("1 Agregar producto") 
+    print("2 Mostrar producto")
+    print("3 Buscar producto ")
+    print("4 Podructo mas caro")
+    print("5 Salir")
+
+def agregar_producto(productos):
+    cant_productos=int(input("Cantidad de productos-->"))
+    for i in range(cant_productos):
+        new_producto=input(f"Nombre producto{i+1}-->").strip().lower()#strip sirve para que no existan espacion en el ingreso del usuario 
+        if new_producto=="":
+            print(" el nombre del producto no puede estar vacio")
+            return
+
+        if new_producto in productos:
+            print("producto ya exixste ")
+            return    
+        try:
+            stock=int(input(f"stock producto{i+1}-->"))
+        except ValueError:
+            print("SOLO SE ACEPTAN VALORES NUMERICOS..")    
+        if stock<int(0):
+            print("Debe ser un numero entero mayor o igual a 0")
+            return
+        
+        precio=int(input("precio producto-->"))
+        if precio<int(0):
+            print("Debe ser un numero entero mayor o igual a 0")
+            return
+        
+        productos[new_producto]=[stock,precio]
+
+
+def mostrar_productos(productos):
+    for clave, valor   in productos.items():
+        print(f"{clave}, stock {valor [0]} valor {valor[1]}")
+
+
+def buscar_productos(productos):
+    buscador=input("Producto-->").lower()
+
+    if buscador in productos:
+        print(f"El producto {buscador} si existe") 
+    else:
+        print(f"producto {buscador} no existe ")           
+
+def producto_mas_caro(producto):
+    producto_max=0
+
+    for clave, valor   in productos.items():
+        if producto_max<valor[1]:
+            producto_max=valor[1]
+    print(f"EL producto {clave} mas caro es {producto_max}")   
+
+    
+def salir_menu(productos):
+    flag_menu=False
+
+while flag_menu:
+    menu()
+    try:
+        op=int(input("-->"))
+    except ValueError:
+        print("SOLO SE ACEPTAN VALORES NUMERICOS..")
+    
+    if op ==1:
+        agregar_producto(productos)
+    if op==2:
+        mostrar_productos(productos)
+    if op==3:
+        buscar_productos(productos)
+    if op ==4:
+        producto_mas_caro(productos)
+    if op ==5:
+        salir_menu(productos)  
+

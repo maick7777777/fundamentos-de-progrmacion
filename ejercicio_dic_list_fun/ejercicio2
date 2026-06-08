@@ -1,0 +1,50 @@
+#diccionarios
+alumnos ={}
+
+#flag
+flag_menu=True
+
+#funciones 
+def menu():
+    print("1 Agregar alumnos ")
+    print("2 Mostrar alumnos ")
+    print("3 Ver promedios ")
+    print("4 Mejor alumnos ")
+    print("5 cantidad de aprobados ")
+    print("6 Salir ")
+
+def agregar_alumnos(alumnos):
+   
+    while True:
+        nombre=input("Nombre del alumno-->")
+        if nombre=="":
+            print( "Nombre esta vacio, intentelo denuevo")
+        else:
+            break    
+    list_notas=[]        
+    try:
+        cant_notas=int(input("cantidad de notas-->"))
+    except ValueError:
+        print("Solo se aceptan valores numericos") 
+    for i in range(cant_notas):
+        notas=float(input(f"Nota {i+1}-->"))
+        list_notas.append(notas)
+        
+
+        alumnos[nombre]=[list_notas]
+
+def mostar_alumnos(alumnos):
+    for clave, valor in alumnos.items():
+        print(f"Nombre: {clave} Notas: {valor}")
+
+while flag_menu:
+    menu()
+    try:
+        op=int(input("-->"))
+    except ValueError:
+        print("Solo se aceptan valores numericos")    
+
+    if (op==1):
+        agregar_alumnos(alumnos)
+    elif(op==2):
+        mostar_alumnos(alumnos)
