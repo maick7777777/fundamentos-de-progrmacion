@@ -1,0 +1,80 @@
+usuarios={}
+
+def menu():
+    print("1 Ingresar usuario")
+    print("2 Buscar usuario")
+    print("3 Eliminar usuario")
+    print("4 Salir")
+
+def ingrese_usuario(usuarios):
+    while True:
+        user_name=input("Nombre-->")
+        if user_name in usuarios:
+            print("nombre de usuario ya registrado")
+        else:
+            break
+
+    while True:      
+        sexo=input("Sexo [M|F]-->").upper()
+        if (sexo=="M") or (sexo=="F"):
+            break
+        else:
+            print("Debe ingresar M o F solamente. Intente de nuevo.") 
+    
+    while True:
+        flag_digito=False
+        flag_letras=False
+        
+        clave=input("Contraseña-->")
+        if len(clave)<8:
+            print("Contraseña no valida debe contener 8 caracteres minimos. Intente otra")
+            continue
+
+        if " " in clave:
+            print("la clave no puede contener espacios")
+            continue
+
+        for recorrido in clave:
+            if recorrido.isdigit():
+                flag_digito= True
+            if recorrido.isalpha():
+                flag_letras=True
+
+        if not flag_digito:
+            print("Contraseña no valida:debe contener un numero ")
+            continue
+        if not flag_letras:
+            print("Contraseña no valida: debe contener letras")
+        usuarios[user_name]=(sexo,clave)
+        break
+
+def buscar_usuario(usuarios):
+    buscar=input("Nombre a buscar-->")
+    for clave, valor in usuarios.items():
+        if buscar in clave:
+            print(f"Nombre: {clave}, sexo:{valor[0]} contraseña:{valor[1]}")
+        else:
+            print("El usuario no se encuentra") 
+            continue
+
+def eliminar_usuario(usuario):
+    eliminar=input("Nombre usuario-->")
+    if eliminar in usuario:
+        print(f"Usuario {eliminar}, eliminado con exito")
+        del usuario[eliminar]
+    else:
+        print("Nose pudo eliminar usuario!")    
+
+
+while True:
+    menu()
+    try:
+        op=int(input("-->"))
+    except ValueError:
+        print("Solo se aceptan valores numericos")    
+    if(op==1):
+        ingrese_usuario(usuarios)
+    elif(op==2):
+        buscar_usuario(usuarios)    
+    elif(op==3):
+        eliminar_usuario(usuarios)    
