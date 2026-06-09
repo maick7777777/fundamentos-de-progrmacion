@@ -55,10 +55,10 @@ def buscar_usuario(usuarios):
         else:
             print("Usuario no encontrado")    
 
-def eliminar_usuarios(alumnos):
+def eliminar_usuarios(usuarios):
     eliminar=input("nombre de usuario-->")
-    if eliminar in alumnos:
-        del alumnos[eliminar]
+    if eliminar in usuarios:
+        del usuarios[eliminar]
         print("el usuario eliminado")
     else:
         print("usuario no encontrado" )
