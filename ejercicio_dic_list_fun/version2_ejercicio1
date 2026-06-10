@@ -1,0 +1,42 @@
+lista_tareas=[]
+
+def mostar_menu():
+    print("1 Agregar tarea")
+    print("2 Eliminar tarea")
+    print("3 Ver tareas ordenadas")
+    print("4 Salir")
+
+def agregar_tarea(lista_tareas):
+    tarea=input("Ingrese la tarea-->")
+    lista_tareas.append(tarea)
+
+def eliminar_tarea(lista_tareas):
+    eliminar=input("tarea a eliminar-->")
+    for i in lista_tareas:
+        if eliminar in i:
+            lista_tareas.remove(eliminar)    
+            print("Tarea eliminada")
+
+def tarea_ordenada(lista_tareas):
+    if len(lista_tareas)==0:
+        print("no hay tareas pendientes") 
+    else:
+        lista_tareas.sort()
+        print(f"lista tareas ordenadas-->{lista_tareas}") 
+        
+
+while True:
+    mostar_menu()
+    try:
+        op=int(input("-->"))
+    except ValueError:
+        print("Solo se aceptan valores numericos")    
+
+    if(op==1):
+        agregar_tarea(lista_tareas)
+    elif(op==2):
+        eliminar_tarea(lista_tareas)
+    elif(op==3):
+        tarea_ordenada(lista_tareas)    
+    elif(op==4):
+        break    
