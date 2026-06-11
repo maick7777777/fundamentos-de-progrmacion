@@ -30,7 +30,7 @@ def ingrese_usuario(usuarios):
             print("Contraseña no valida debe contener 8 caracteres minimos. Intente otra")
             continue
 
-        if " " in clave:
+        if not clave.split():
             print("la clave no puede contener espacios")
             continue
 
@@ -45,7 +45,7 @@ def ingrese_usuario(usuarios):
             continue
         if not flag_letras:
             print("Contraseña no valida: debe contener letras")
-        usuarios[user_name]=(sexo,clave)
+        usuarios[user_name]=[sexo,clave]
         break
 
 def buscar_usuario(usuarios):
