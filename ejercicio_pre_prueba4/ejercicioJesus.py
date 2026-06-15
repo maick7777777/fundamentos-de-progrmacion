@@ -56,14 +56,6 @@ def agregarVehiculo(lista):
     anio = input("Ingrese el año de fabricación del vehiculo (> 1900): ")
     precio = input("Ingrese el precio del vehiculo (> 0): ")
 
-    # OPCIONAL: VALIDAR SI EXISTE PREVIAMENTE EL MODELO
-    posicion = buscarVehiculo(lista, modelo)
-
-    if posicion != -1:
-        print(f"El vehiculo ya existe para el modelo {modelo}")
-        
-        return
-    # OPCIONAL: VALIDAR SI EXISTE PREVIAMENTE EL MODELO
 
     modeloValido = validarModelo(modelo) # True o False
     anioValido = validarAnio(anio) # True o False
