@@ -1,0 +1,8 @@
+def pedir_opcion():
+    print("[A] AGREGAR CONTACTO ")
+    print("[B] BUSCAR COONTACTO ")
+    print("[S] SALIR ")
+    op = input("-->").upper()
+    return op 
+
+
