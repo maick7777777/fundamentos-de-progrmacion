@@ -1,0 +1,91 @@
+lista_vehiculos=[]
+def mostrar_menu():
+    print("========== MENÚ PRINCIPAL ==========")
+    print("1. Agregar vehículo")
+    print("2. Buscar vehículo ")
+    print("3. Eliminar vehículo ")
+    print("4. Actualizar disponibilidad ")
+    print("5. Mostrar vehículos ")
+    print("6. Salir ")
+    print("===================================== ")
+
+def selecionar_opcion():
+    while True:    
+        try:
+            op=int(input("->"))
+            return op
+        except ValueError:
+            print("Solo se aceptan valores numericos") 
+
+def agregar_vehiculo(lista) :
+    modelo=input("Modelo-->")
+    modelo_valido=validador_modelo(modelo)
+    if modelo_valido==False:
+        print("El modelo no puede estar vacío ni ser solo espacios en blanco.")
+    else:
+        print("Modelo valido")
+
+    print("-"*20)   
+
+    año=int(input("Año-->"))
+    año_valido=validador_año(año)
+    if año_valido==False:
+        print("El año debe ser un número entero mayor que 1900.")
+    else:
+        print("año valido")
+    print("-"*20)      
+
+    Precio=float(input("precio-->"))       
+    precio_valido=validador_precio(Precio)
+    if precio_valido==False:
+        print("El precio debe ser un número decimal mayor que cero")
+    else:
+        print("precio valido")
+    
+    if modelo_valido==True and año_valido==True and precio_valido==True:
+        vehiculo={
+            "modelo" : modelo,
+            "año" : año,
+            "precio" : Precio,
+            "disponible" : False
+        }
+
+        lista_vehiculos.append(vehiculo)
+        print("auto garegado correctamente")
+    else:
+        print("el auto no se pudo agregar revisa los mensajes") 
+
+
+def validador_modelo(modelo):
+    if modelo.strip()=="":
+        return False
+    else:
+        return True
+    
+
+def validador_año(año):
+    try:
+        año=int(año)
+        if año<1900:
+            return False
+        else:
+            return True
+    except ValueError:
+        return False    
+
+def validador_precio(precio):
+    try:
+        precio=float(precio)
+        if precio<0:
+            return False
+        else:
+            return True
+    except ValueError:
+        return False    
+
+while True:
+    mostrar_menu()
+    opcion=selecionar_opcion()    
+    if opcion==1:
+        agregar_vehiculo(lista_vehiculos)
+        
