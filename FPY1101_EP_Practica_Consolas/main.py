@@ -20,20 +20,16 @@ def agregar_consola(consolas, ventas):
     stock=int(input("Stock-->"))
     stock_validado=validador_stock(stock)
 
-    if (sigla_validada==True) and (nombre_validado==True) and (fabricante==True) and (año_validado==True) and (precio==True) and (stock_validado==True):
-        consolas={
-            "sigla" : [nombre, fabricante, año].append(consolas)
-        }
+    if (sigla_validada==True) and (nombre_validado==True) and (fabricante_validado==True) and (año_validado==True) and (precio_validado==True) and (stock_validado==True):
+        consolas[sigla] =[nombre, fabricante, año]
 
-        ventas={
-            "sigla" : [precio,stock].append(ventas)
-        }
+        ventas[sigla]=[precio, stock]
         print("Se agrego corrcetamente")
     else:
         print("No se logro agregar los valores")    
+        
 
-
-
+#validadores 
 def validador_sigla(sigla, consola):   
     if sigla in consola:
         print("falso sigla")
@@ -46,7 +42,7 @@ def validador_nombre(nombre):
         print("falso nombre")
         return False
     
-    if len(nombre)<=3 and len(nombre)>=40:
+    if len(nombre)<3 or len(nombre)>40:
         print("falso nombre 2")
         return False
     else:
@@ -57,7 +53,7 @@ def validador_fabricante(fabricante):
             print("falso fabricante")
             return False
         
-    if len(fabricante)<=2 and len(fabricante)>=30:
+    if len(fabricante)<=2 or len(fabricante)>=30:
         print("falso fabricante 2")
         return False
     else:
@@ -83,7 +79,22 @@ def validador_stock(stock):
     else:
         print("falso stock")
         return False
-
+ 
+def buscar_consola(consolas, ventas):
+    sigla_buscar=input("Ingrese la sigla de la consola que quiere buscar--> ")
+    for clave, valor in consolas.items():
+        if clave == sigla_buscar:
+            print("=== Consola Encontrada ===")
+            print(f"Sigla : {consolas["sigla"]}")
+            print(f"Nombre : {consolas["nombre"]}")
+            print(f"Fabricante : {consolas["fabricante"]}")
+            print(f"Año lanz : {consolas["año"]}")
+            for clave, valor in ventas.items():
+                if clave==sigla_buscar:
+                        print(f"Precio : {ventas["precio"]}")
+                        print(f"Stock : {ventas["stock"]}")
+        else:
+            print("Sigla buscada no existe ")
 
 while True:
     print("***MENU PRINCIPAL***")
@@ -104,12 +115,12 @@ while True:
     if opcion==1:
         agregar_consola(consolas,ventas)
     elif opcion==2:
-        print("b")    
-    elif opcion==2:
+        buscar_consola(consolas,ventas)
+    elif opcion==3:
         print("c")    
-    elif opcion==2:
-        print("d")    
-    elif opcion==2:
-        print("e")    
+    elif opcion==4:
+        print(consolas, ventas)    
+    elif opcion==5:
+        break   
     else:
         print("La opcion ingresada esta fuera de rango ")              
