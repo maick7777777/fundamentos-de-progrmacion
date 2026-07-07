@@ -67,19 +67,78 @@ def busqueda_precio(p_min, p_max,DiccionarioArreglos,DiccionarioBodegas):
         for recorrido in lista_similares:
             print(recorrido)
 
-def buscar_codigo(codigo,DiccionarioBodega):
-    if codigo in DiccionarioBodega:
+def buscar_codigo(codigo,DicionarioBodega):
+    if codigo in DicionarioBodega:
         return True
     else:
         return False
     
+def actualizar_precio(codigo,precio,DiccionarioBodega):
+    validador=buscar_codigo(codigo_buscar,bodega)
+    if validador==True:
+        for claveBodega, valorBodega in DiccionarioBodega.items():
+            if codigo in claveBodega:
+                valorBodega[0]=precio
+        return True
+    else:
+        False
+
+def validador_codigo(codigo,DiccionarioArreglo):
+    for claveAreglo, valorArreglo in DiccionarioArreglo.items():
+        if not codigo.strip() or codigo==claveAreglo:
+            return False
+        else:
+            return True
 
 
+def validador_nombre(nombre):
+    if not nombre.strip():
+        return False
+    else:
+        return True
+    
+def validador_tipo(tipo):
+    if not tipo.strip():
+        return False
+    else:
+        return True
+    
+def validador_colorprincipal(color):
+    if not color.strip():
+        return False
+    else:
+        return True
 
-#def actualizar_precio(codigo,nuevo_precio):
+def validador_tamaño(tamaño):
+    if tamaño=="S" or tamaño=="M" or tamaño=="L":
+        return True
+    else:
+        return False
 
+def validor_incluye_tarejeta(tarjeta):
+    if tarjeta=="S":
+        return True
+    else:
+        return False
 
+def validador_temporada(temporada):
+    if not temporada.strip():
+        return False
+    else:
+        return True
+    
+def validador_precio(precio):
+    if isinstance(precio, int) and precio > 0:
+        return True
+    else:
+        return False
                     
+def validador_unidades(unidades):
+    if isinstance(unidades, int) and unidades >= 0:
+        return True
+    else:
+        return False
+
 
 
 while True:
@@ -102,19 +161,57 @@ while True:
             else:
                 print("Los numeros deben ser igual o mayor a 0")
 
-'''
+
     if opcion==3:
-        codigo_buscar=input("Ingrese el codigo a buscar-->")
-        try:
-            nuevo_precio=int(input("Ingrese el nuevo precio-->"))
-        except ValueError:
-            print("solo se aceptan valores numericos.")
-        validador_codigo=buscar_codigo(codigo_buscar,bodega)
-        if not validador_codigo:
-'''
-
-
+        while True:
+            codigo_buscar=input("Ingrese el codigo a buscar-->").upper()
+            try:
+                nuevo_precio=int(input("Ingrese el nuevo precio-->"))
+            except ValueError:
+                print("solo se aceptan valores numericos.")
+            precio_actualizado=actualizar_precio(codigo_buscar,nuevo_precio,bodega)
+            if precio_actualizado == True:
+                print("Precio actualizado")
+            else:
+                print("El codigo no existe")    
+            pregunta=input("¿Desea actualizar otro precio (S/N)?").upper()
+            if pregunta =="S":
+                continue
+            else:
+                break
     if opcion==4:
-        pass
+        new_codigo=input("Ingrese el nuevo codigo-->")
+        validador_codigo(new_codigo)
+
+        new_nombre=input("Ingrese el nuevo nombre-->")
+        validador_nombre(new_nombre)
+
+        new_tipo=input("Ingrese el nuevo tipo-->")
+        validador_tipo(new_tipo)
+
+        new_color_principal=input("Ingrese el nuevo color principal-->")
+        validador_colorprincipal(new_color_principal)
+
+        new_tamaño=input("Ingrese tamaño (S,M.L)-->").upper()
+        validador_tamaño(new_tamaño)
+
+        new_incluye_tarjeta=input("¿Agregar tarjeta (S/N?").upper()
+        validor_incluye_tarejeta(new_incluye_tarjeta)
+
+        new_temporada=input("Ingrese la nueva temporada-->")
+        validador_temporada(new_temporada)
+
+        try:
+            new_precio=int(input("Ingrese el nuevo precio-->"))
+        except ValueError:
+            print("Solo se aceptan valores numericos ")
+        validador_precio(new_precio)
+        
+        try:
+            new_unidades=int(input("Ingrese la cantidad de unidades-->"))
+        except ValueError:
+            print("Solo se aceptan valores ")
+        validador_unidades(new_unidades)
+    
     if opcion==6:
         break
