@@ -54,7 +54,7 @@ def unidades_tipo(tipobuscado, DiccionarioArreglos, DiccionarioBodegas):
 def busqueda_precio(p_min, p_max,DiccionarioArreglos,DiccionarioBodegas):
     lista_similares=[]
     for claveBodega, valorBodega in DiccionarioBodegas.items():
-        if valorBodega[0]>p_min and valorBodega[0]<=p_max and valorBodega[1]>0:
+        if valorBodega[0]>p_min and valorBodega[0]<p_max and valorBodega[1]>0:
             
             for claveArreglos, valorArreglos in DiccionarioArreglos.items():
                 if claveArreglos==claveBodega:
@@ -167,6 +167,7 @@ while True:
     if opcion==1:
         tipo_buscar=input("Ingrese un tipo de arreglo-->")
         unidades_tipo(tipo_buscar,arreglos,bodega)
+
     if opcion==2:
         while True:
             try:
